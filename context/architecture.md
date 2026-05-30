@@ -91,7 +91,7 @@ src/
 | Concern | Decision |
 |---------|----------|
 | User authentication | None. Dashboard is fully public and anonymous. |
-| API key / credentials | None required. Mosaic API is open (`?page=N&limit=100`). No Authorization header. |
+| API key / credentials | None required. Mosaic API URL: `https://mosaicfellowship.in/api/data/npd/reviews?page=N&limit=100`. No Authorization header. |
 | Data ownership | No user data is collected. Reviews are from Mosaic's API and are read-only. |
 | Access control | None. Any person with the Vercel URL can view the dashboard. |
 | Rate limiting | Mosaic API has no documented rate limit. We fetch sequentially (one request at a time) to avoid hammering the endpoint. |
