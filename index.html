@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>temp-app</title>
+    <script>
+      window.addEventListener('error', function(event) {
+        var errorDiv = document.createElement('div');
+        errorDiv.style.position = 'fixed';
+        errorDiv.style.top = '0';
+        errorDiv.style.left = '0';
+        errorDiv.style.width = '100%';
+        errorDiv.style.height = '100%';
+        errorDiv.style.backgroundColor = 'rgba(255, 0, 0, 0.95)';
+        errorDiv.style.color = 'white';
+        errorDiv.style.padding = '30px';
+        errorDiv.style.zIndex = '999999';
+        errorDiv.style.fontFamily = 'monospace';
+        errorDiv.style.fontSize = '14px';
+        errorDiv.style.overflow = 'auto';
+        errorDiv.style.lineHeight = '1.5';
+        errorDiv.innerHTML = '<h2 style="color: #ffcccc; margin-top: 0;">[FATAL APP ERROR] Unhandled Exception</h2>' +
+          '<p><strong>Message:</strong> ' + event.message + '</p>' +
+          '<p><strong>File:</strong> ' + event.filename + ':' + event.lineno + ':' + event.colno + '</p>' +
+          '<p><strong>Stack trace:</strong></p><pre style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 4px; overflow-x: auto;">' + (event.error ? event.error.stack : 'No stack trace available') + '</pre>';
+        document.body.appendChild(errorDiv);
+      });
+      window.addEventListener('unhandledrejection', function(event) {
+        var errorDiv = document.createElement('div');
+        errorDiv.style.position = 'fixed';
+        errorDiv.style.top = '0';
+        errorDiv.style.left = '0';
+        errorDiv.style.width = '100%';
+        errorDiv.style.height = '100%';
+        errorDiv.style.backgroundColor = 'rgba(255, 0, 0, 0.95)';
+        errorDiv.style.color = 'white';
+        errorDiv.style.padding = '30px';
+        errorDiv.style.zIndex = '999999';
+        errorDiv.style.fontFamily = 'monospace';
+        errorDiv.style.fontSize = '14px';
+        errorDiv.style.overflow = 'auto';
+        errorDiv.style.lineHeight = '1.5';
+        errorDiv.innerHTML = '<h2 style="color: #ffcccc; margin-top: 0;">[FATAL APP ERROR] Unhandled Promise Rejection</h2>' +
+          '<p><strong>Reason:</strong> ' + (event.reason ? (event.reason.message || event.reason) : 'Unknown reason') + '</p>' +
+          (event.reason && event.reason.stack ? '<p><strong>Stack trace:</strong></p><pre style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 4px; overflow-x: auto;">' + event.reason.stack + '</pre>' : '');
+        document.body.appendChild(errorDiv);
+      });
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
